@@ -14,8 +14,13 @@
         <a-asset-item id="tree" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/DPM-X-Move.glb"></a-asset-item>
       </a-assets>
       <!-- use your gltf model -->
+      <a-mixin id="orbit" animation="property: rotation; loop: true; from:  0 0 0; to: 0 360 0; dur: 20000; easing: linear;"></a-mixin>
+     
 
-      <a-entity  animation-mixer="clip: run_*" rotation="1 1 1" gltf-model="#tree" position='0 0.5 0'></a-entity>
+        <a-entity mixin="orbit" scale="3 3 3" animation-mixer="clip: run_*" rotation="1 1 1" gltf-model="#tree" position='0 0.5 0'></a-entity>
+   
+
+
     <a-marker-camera preset='custom' type="pattern" url='https://raw.githubusercontent.com/superdwayne/Assets/main/kl.patt'></a-marker-camera>
 
 
