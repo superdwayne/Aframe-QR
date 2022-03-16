@@ -8,9 +8,9 @@
 
 <body style='margin : 0px; overflow: hidden;'>
   <a-scene camera embedded arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; ' >
-    <!-- create your content here. just a box for now -->
-    <a-text value="Hello, I am DPM"></a-text>
-    <a-text value="I am a Creative technologist"></a-text>
+
+    <a-entity camera look-controls position="0 1.6 0"></a-entity>
+
     <a-entity
   geometry="primitive: plane; height: auto; width: 4"
   material="color: #000000"
@@ -41,7 +41,7 @@
       <!-- use your gltf model -->
       
       <a-entity light="type: spot; angle: 45"></a-entity>
-      <a-entity  scale="3 3 3" animation-mixer="clip: WAVE" rotation="1 1 1" gltf-model="#tree" position='0 0.5 -10'>></a-entity>
+      <a-entity  scale="3 3 3" animation-mixer="clip: WAVE" rotation="1 1 1" gltf-model="#tree" position='0 -2 -10'></a-entity>
    
 
     <a-marker-camera preset='custom' type="pattern" url='https://raw.githubusercontent.com/superdwayne/Assets/main/kl.patt'></a-marker-camera>
