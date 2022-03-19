@@ -46,6 +46,7 @@ AFRAME.registerComponent('loader', {
 
 <body style='margin : 0px; overflow: hidden;'>
   <a-scene 
+  camera 
   loader  
   embedded arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; ' >
   
@@ -60,7 +61,7 @@ AFRAME.registerComponent('loader', {
         crossOrigin="anonymous"  
         src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/Shortmusic.mp4">
         </audio>
-        <a-entity camera look-controls >
+        <a-entity  >
           <a-asset-item id="tree" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/DPM-S-Walking-v2.glb"></a-asset-item>
       </a-entity>
       </a-assets>
