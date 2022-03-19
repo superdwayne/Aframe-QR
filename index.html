@@ -11,12 +11,31 @@
 
 
 
-  AFRAME.registerComponent('audiohandler', {
-  init:function() {
-     let playing = false;
-     let audio = document.querySelector("#neigh");
-     console.log(this.el,  "DPM")
-     this.el.addEventListener('click', () => {
+//   AFRAME.registerComponent('audiohandler', {
+//   init:function() {
+//      let playing = false;
+//      let audio = document.querySelector("#neigh");
+//      console.log(this.el,  "DPM")
+//      this.el.addEventListener('click', () => {
+//           if(!playing) {
+//               audio.play();
+//            } else {
+//               audio.pause();
+//               audio.currentTime = 0;
+//            }
+//            playing = !playing;
+//      });
+//   }
+// })
+
+AFRAME.registerComponent('audiohandler', {
+  init: function () {
+    let playing = false;
+    let audio = document.querySelector("#neigh");
+
+    const sceneEl = this.el;
+
+    sceneEl.addEventListener('click', () => {
           if(!playing) {
               audio.play();
            } else {
@@ -26,7 +45,7 @@
            playing = !playing;
      });
   }
-})
+});
 
 </script>
 
@@ -45,15 +64,15 @@
        crossOrigin="anonymous"  
        src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/Shortmusic.mp4">
       </audio>
-      <a-asset id="tree" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/DPM-S-Walking-v2.glb"></a-asset>
+      <a-asset-item id="tree" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/DPM-S-Walking-v2.glb"></a-asset-item>
     </a-assets>
 
     
       <!-- use your gltf model -->
     
         <a-entity light="type: spot; angle: 45"></a-entity>
-        <a-entity  scale="2 2 2" animation-mixer="clip: WALK" rotation="0 90 0" gltf-model="#tree" position='0 -1 -5'></a-entity>
-        <a-box color="tomato" depth="2" height="2" width="0.5" position = "0  0 -2" ></a-box>
+        <a-entity scale="2 2 2" animation-mixer="clip: WALK" rotation="0 90 0" gltf-model="#tree" position='0 -1 -5' gesture-handler></a-entity>
+        <!-- <a-box color="tomato" depth="2" height="2" width="0.5" position = "0  0 -2" ></a-box> -->
 
 <!--       
         <a-entity >
