@@ -26,7 +26,7 @@ AFRAME.registerComponent('loader', {
 
         (AFRAME.utils.device.isMobile() === true  ? switcher = 'click' : switcher = 'model-loaded' )
         console.log(switcher)
-        sceneEl.addEventListener(`${switcher}`, e => {
+        sceneEl.addEventListener(`${switcher}`, function(e) {
 // We check here if the GTLF has loaded then we play or pause the audio          
            console.log(e.detail.target.hasLoaded)
            if (e.detail.target.hasLoaded) {
