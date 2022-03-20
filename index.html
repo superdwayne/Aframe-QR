@@ -16,10 +16,17 @@ AFRAME.registerComponent('loader', {
 
         let audio = document.querySelector("#neigh");
         let loader = document.querySelector("#loadingEl")
+        let device = AFRAME.utils.device.isMobile()
+        let switcher = ''
+        const sceneEl = this.el;
 
-         const sceneEl = this.el;
+        //This logic will help deteic if the device is desktop or mobile
+        //If mobile the click function will be passed and not a custom function
+        // Created Conditional operator to check for mobile or desktop 
 
-         sceneEl.addEventListener('model-loaded', e => {
+        (AFRAME.utils.device.isMobile() === true  ? switcher = 'click' : switcher = 'model-loaded' )
+        console.log(switcher)
+        sceneEl.addEventListener(`${switcher}`, e => {
 // We check here if the GTLF has loaded then we play or pause the audio          
            console.log(e.detail.target.hasLoaded)
            if (e.detail.target.hasLoaded) {
