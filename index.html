@@ -61,9 +61,9 @@ AFRAME.registerComponent('loader', {
         light="type: point; color: green; intensity: 2; " rotation=" 0 45 0" position="0.5 1.8 -3"
         animation="property: position; to: 1 1.8 -3; dir: alternate; loop: true"></a-entity>
 
-        
-        <a-entity scale="2 2 2" animation-mixer="clip: WALK" rotation="0 90 0" gltf-model="#tree" position='-2 -1 -5' ></a-entity>
-       
+        <a-entity camera look-controls>
+           <a-entity scale="2 2 2" animation-mixer="clip: WALK" rotation="0 90 0" gltf-model="#tree" position='-2 -1 -5' ></a-entity>
+      </a-entity>
         <a-entity 
         id="lightSphere"
         geometry="primitive: sphere; radius: 0.1; " material="shader: flat; opacity: 0" 
