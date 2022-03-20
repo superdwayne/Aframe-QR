@@ -43,9 +43,9 @@ AFRAME.registerComponent('loader', {
 </script>
 
 <body style='margin : 0px; overflow: hidden;'>
-  <a-scene   loader embedded arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; ' >
+  <a-scene camera loader embedded arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; ' >
    
-    <a-entity camera
+    <a-entity 
     geometry="primitive: plane; height: auto; width: 4"
     material="color: #000000"
     text="width: 4; value: I am a Creative technologist"
