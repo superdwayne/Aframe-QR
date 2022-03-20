@@ -43,12 +43,12 @@ AFRAME.registerComponent('loader', {
 </script>
 
 <body style='margin : 0px; overflow: hidden;'>
-  <a-scene loader embedded arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; ' >
+  <a-scene camera  loader embedded arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; ' >
    
       <a-assets >
         <audio  id="neigh" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/Shortmusic.mp4">
         </audio>
-        <a-entity  camera look-controls position="0 1.5 4">
+        <a-entity   position="0 1.5 4">
           <a-asset-item id="tree" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/DPM-S-Walking-v2.glb"></a-asset-item>
         </a-entity>
       </a-assets>
@@ -62,7 +62,7 @@ AFRAME.registerComponent('loader', {
         animation="property: position; to: 1 1.8 -3; dir: alternate; loop: true"></a-entity>
 
         
-        <a-entity audio="src: #neigh; loop: true;" scale="2 2 2" animation-mixer="clip: WALK" rotation="0 90 0" gltf-model="#tree" position='-2 -1 -5' ></a-entity>
+        <a-entity scale="2 2 2" animation-mixer="clip: WALK" rotation="0 90 0" gltf-model="#tree" position='-2 -1 -5' ></a-entity>
        
         <a-entity 
         id="lightSphere"
