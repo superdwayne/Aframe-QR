@@ -44,15 +44,8 @@ AFRAME.registerComponent('loader', {
 
 <body style='margin : 0px; overflow: hidden;'>
   <a-scene camera loader embedded arjs='detectionMode: mono_and_matrix; matrixCodeType: 3x3; ' >
-   
-    <a-entity 
-    geometry="primitive: plane; height: auto; width: 4"
-    material="color: #000000"
-    text="width: 4; value: I am a Creative technologist"
-    position="3 2 -5"
-    height="10" ></a-entity>
-
-      <a-assets >
+    <a-camera></a-camera>  
+    <a-assets >
         <audio  id="neigh" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/Shortmusic.mp4">
         </audio>
         <a-entity   position="0 1.5 4">
@@ -60,8 +53,6 @@ AFRAME.registerComponent('loader', {
         </a-entity>
       </a-assets>
 
-        <!-- <a-entity light="type: spot; angle: 90; color: #AFA; intensity: 3.5" ></a-entity> -->
-      
         <a-entity 
         id="lightSphere"
         geometry="primitive: sphere; radius: 0.1; " material="shader: flat; opacity: 0" 
