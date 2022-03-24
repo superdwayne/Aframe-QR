@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>XR Spinosaurus</title>
+    <title>Dwayne Paisley-Marshall</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
     </script>    
     
     <!-- import the webpage's javascript files -->
-    <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
@@ -78,12 +78,31 @@
   </head>  
   <body>
 
+    
+
+  
     <a-scene>
+
+      <a-entity 
+      id="lightSphere"
+      geometry="primitive: sphere; radius: 0.1; " material="shader: flat; opacity: 1" 
+      light="type: point; color: green; intensity: 2; " rotation=" 0 45 0" position="0.5 1.8 -3"
+      animation="property: position; to: 1 1.8 -1; dir: alternate; loop: true"></a-entity>
+  
+    
+
       <a-assets timeout="30000">
         <a-asset-item id="spinosaurus" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/DPM-S-Walking-v2.glb" response-type="arraybuffer"></a-asset-item>
       </a-assets>
+
+      <a-entity 
+      id="lightSphere"
+      geometry="primitive: sphere; radius: 0.1; " material="shader: flat; opacity: 1" 
+      light="type: point; color: red; intensity: 2; " rotation=" 0 45 0" position="-1 1.8 -1"
+      animation="property: position; to: 0.5 1.8 -3; dir: alternate; loop: true"></a-entity>
+  
       
-      <a-camera position="0 1.2 0"></a-camera>
+      <a-camera position="0 1.6 0" fov="40"></a-camera>
       
       <!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
 
@@ -93,7 +112,7 @@
         <a-asset-item id="tree" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/DPM-S-Walking-v2.glb"></a-asset-item>
       </a-entity> -->
 
-      <a-entity environment="preset: forest; lighting: none; shadow: none; lightPosition: 0 2.15 0"
+      <a-entity environment="preset: goldmine; lighting: none; shadow: none; lightPosition: 0 2.15 0"
                 hide-in-ar-mode></a-entity>
       
       <a-entity id="dino" position="-1 0 -3" scale="0.5 0.5 0.5">
