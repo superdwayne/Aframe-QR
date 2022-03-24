@@ -76,24 +76,31 @@
       });  
       
       
- document.addEventListener("click", function () {
-  document.querySelector("a-text").setAttribute("visible", false);
-});
+      document.addEventListener("click", function () {
 
-function playing(index) {
-  console.log("now playing", index);
-  document.querySelector("#neigh").setAttribute("visible", true);
-}
+document.querySelector("a-text").setAttribute("visible", false);
+let playing = false;
+ let audio = document.querySelector("#neigh");
+ console.log(audio)
+ if (!playing) {
+         audio.play();
+       } else {
+         audio.pause();
+         audio.currentTime = 0;
+       }
+       playing = !playing;
+   
+});
 
   </script>
   </head>  
   <body>
 
   
-    <a-scene sound="src: #neigh; on: click; loop: true; volume: 0.2; rolloffFactor: 0">
-
+    <a-scene  >
+    
       <a-text value="Click to begin" position="0 2 -3" align="center"></a-text>
-
+ 
       <audio  id="neigh" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/Shortmusic.mp4">
       </audio>
 
