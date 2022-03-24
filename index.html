@@ -73,15 +73,29 @@
             if (!this.wasVisible) this.el.setAttribute('visible', false);
           });
         }
-      });    
+      });  
+      
+      
+ document.addEventListener("click", function () {
+  document.querySelector("a-text").setAttribute("visible", false);
+});
+
+function playing(index) {
+  console.log("now playing", index);
+  document.querySelector("#neigh").setAttribute("visible", true);
+}
+
   </script>
   </head>  
   <body>
 
-    
-
   
-    <a-scene>
+    <a-scene sound="src: #neigh; on: click; loop: true; volume: 0.2; rolloffFactor: 0">
+
+      <a-text value="Click to begin" position="0 2 -3" align="center"></a-text>
+
+      <audio  id="neigh" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/Shortmusic.mp4">
+      </audio>
 
       <a-entity 
       id="lightSphere"
@@ -175,9 +189,6 @@
       document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.25);
     </script>
 
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js"></script>
+
   </body>
 </html>
