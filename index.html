@@ -82,7 +82,7 @@ let playing = false;
       <a-entity environment="preset: goldmine; lighting: none; shadow: none; lightPosition: 0 2.15 0"
                 hide-in-ar-mode></a-entity>
       
-      <a-entity id="dpm" position="-1 0 -3" scale="0.6 0.6 0.6">
+      <a-entity id="dpm" position="-1.5 0 -3" scale="0.6 0.6 0.6">
        
         <a-entity position="-0.5 1.15 0" rotation="0 55 0"
                   gltf-model="#dpm"
@@ -103,38 +103,7 @@ let playing = false;
                target="dpm"
                position="-5 3 1.5"></a-light>
 
-
     </a-scene>
-
-    <div id="text">
-      <h1>A-Frame Spinosaurus for VR/AR</h1>
-    
-      <p>
-        Model: <a href="https://sketchfab.com/3d-models/spinosaurus-2135501583704537907645bf723685e7">Spinosaurus</a> by 
-        <a href="https://sketchfab.com/VapTor">Vaptor-Studio</a>.
-      </p>
-      <p>
-        Size: <button id="btn_full">Full</button>
-        <button id="btn_half">1/2</button>
-        <button id="btn_quarter">1/4</button>
-      </p>
-      
-      <p>
-        This requires browser support for WebXR's AR mode, for example an
-        <a href="https://developers.google.com/ar/discover/supported-devices">ARCore-compatible</a>
-        Android phone with Chrome version 81 or higher.
-      </p>
-      
-      <p>
-        Powered by <a href="https://aframe.io/blog/aframe-v1.0.0/">A-Frame v1.0.0</a>.
-      </p>
-    </div>
-    <script>
-      function setSize(scale) {
-        document.getElementById('dpm').setAttribute('scale', {x: scale, y: scale, z: scale});
-      }
-    </script>
-
 
   </body>
 </html>
