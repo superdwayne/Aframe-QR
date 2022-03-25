@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
     <script>
       // WebXR requires HTTPS, so the site doesn't work if someone manually enters
       // the URL and ends up using HTTP. To work around this, force redirect from
@@ -27,58 +24,10 @@
     <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
     <script>
-      // Define a few custom components useful for AR mode. While these are somewhat reusable,
-      // I recommend checking if there are officially supported alternatives before copying
-      // these into new projects.
     
-      // See also https://github.com/aframevr/aframe/pull/4356
-      AFRAME.registerComponent('hide-in-ar-mode', {
-        // Set this object invisible while in AR mode.
-        init: function () {
-          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
-            this.wasVisible = this.el.getAttribute('visible');
-            if (this.el.sceneEl.is('ar-mode')) {
-              this.el.setAttribute('visible', false);
-            }
-          });
-          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
-            if (this.wasVisible) this.el.setAttribute('visible', true);
-          });
-        }
-      });
-      
-      AFRAME.registerComponent('ar-shadows', {
-        // Swap an object's material to a transparent shadows-only material while
-        // in AR mode. Intended for use with a ground plane. The object is also
-        // set visible while in AR mode, this is useful if it's hidden in other
-        // modes due to them using a 3D environment.
-        schema: {
-          opacity: {default: 0.3}
-        },
-        init: function () {
-          this.el.sceneEl.addEventListener('enter-vr', (ev) => {
-            this.wasVisible = this.el.getAttribute('visible');
-            if (this.el.sceneEl.is('ar-mode')) {
-              this.savedMaterial = this.el.object3D.children[0].material;
-              this.el.object3D.children[0].material = new THREE.ShadowMaterial();
-              this.el.object3D.children[0].material.opacity = this.data.opacity;
-              this.el.setAttribute('visible', true);
-            }
-          });
-          this.el.sceneEl.addEventListener('exit-vr', (ev) => {
-            if (this.savedMaterial) {
-              this.el.object3D.children[0].material = this.savedMaterial;
-              this.savedMaterial = null;
-            }
-            if (!this.wasVisible) this.el.setAttribute('visible', false);
-          });
-        }
-      });  
-      
-      
-      document.addEventListener("click", function () {
+document.addEventListener("click", function () {
 
-document.querySelector("a-text").setAttribute("visible", false);
+document.querySelector("a-entity").setAttribute("visible", false);
 let playing = false;
  let audio = document.querySelector("#neigh");
  console.log(audio)
@@ -97,9 +46,14 @@ let playing = false;
   <body>
 
   
-    <a-scene  >
-    
-      <a-text value="Click to begin" position="0 2 -3" align="center"></a-text>
+    <!-- Added a rayOrigin to the scene to the user has to click before they can interact with the scene.   -->
+    <a-scene cursor="rayOrigin: mouse" loading-screen="dotsColor: green; backgroundColor: black">
+      <!-- <a-box position="0 2.2 -3" depth="1" height="1" onclick="doSomething"></a-box> -->
+      <a-entity position="0 2.2 -3"
+                text="anchor: center; width: 1.5; color: white; value: Welcome to my AR experience, we have just one rule, click for audio	
+                &#128071;">
+      
+              </a-entity>
  
       <audio  id="neigh" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/Shortmusic.mp4">
       </audio>
@@ -107,7 +61,7 @@ let playing = false;
       <a-entity 
       id="lightSphere"
       geometry="primitive: sphere; radius: 0.1; " material="shader: flat; opacity: 0" 
-      light="type: point; color: green; intensity: 2; " rotation=" 0 45 0" position="0.5 1.8 -3"
+      light="type: point; color: green; intensity: 5; " rotation=" 0 45 0" position="0.5 1.8 -3"
       animation="property: position; to: 1 1.8 -1; dir: alternate; loop: true"></a-entity>
   
     
@@ -119,26 +73,18 @@ let playing = false;
       <a-entity 
       id="lightSphere"
       geometry="primitive: sphere; radius: 0.1; " material="shader: flat; opacity: 0" 
-      light="type: point; color: red; intensity: 2; " rotation=" 0 45 0" position="-1 1.8 -1"
+      light="type: point; color: red; intensity: 5; " rotation=" 0 45 0" position="-1 1.8 -1"
       animation="property: position; to: 0.5 1.8 -3; dir: alternate; loop: true"></a-entity>
   
       
       <a-camera position="0 1.6 0" fov="40"></a-camera>
-      
-      <!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
-
- <!-- 
-      <a-entity   position="0 1.5 4">
-        <a-asset-item id="tree" crossOrigin="anonymous" src="https://cdn-static.farfetch-contents.com/Content/UP/EXPERIENCE/Metaverse/DPM-S-Walking-v2.glb"></a-asset-item>
-      </a-entity> -->
-      
 
       <a-entity environment="preset: goldmine; lighting: none; shadow: none; lightPosition: 0 2.15 0"
                 hide-in-ar-mode></a-entity>
       
-      <a-entity id="dino" position="-1 0 -3" scale="0.5 0.5 0.5">
+      <a-entity id="dpm" position="-1 0 -3" scale="0.7 0.7 0.7">
        
-        <a-entity position="-0.5 2.15 0" rotation="0 55 0"
+        <a-entity position="-0.5 1.15 0" rotation="0 55 0"
                   gltf-model="#dpm"
                   animation-mixer
                   shadow="cast: true; receive: false"></a-entity>
@@ -154,14 +100,10 @@ let playing = false;
                       shadowCameraBottom: -5;
                       shadowCameraTop: 5;"
                id="light"
-               target="dino"
+               target="dpm"
                position="-5 3 1.5"></a-light>
 
-      <!-- This shadow-receiving plane is only visible in AR mode. -->
-      <a-plane height="15" width="15" position="0 0 -3" rotation="-90 0 0"
-               shadow="receive: true"
-               ar-shadows="opacity: 0.3"
-               visible="false"></a-plane>
+
     </a-scene>
 
     <div id="text">
@@ -189,11 +131,8 @@ let playing = false;
     </div>
     <script>
       function setSize(scale) {
-        document.getElementById('dino').setAttribute('scale', {x: scale, y: scale, z: scale});
+        document.getElementById('dpm').setAttribute('scale', {x: scale, y: scale, z: scale});
       }
-      document.getElementById('btn_full').onclick = setSize.bind(this, 1);
-      document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
-      document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.25);
     </script>
 
 
